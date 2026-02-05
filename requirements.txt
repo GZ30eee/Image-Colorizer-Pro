@@ -1,0 +1,12 @@
+streamlit
+torch
+torchvision
+numpy
+Pillow
+opencv-python-headless
+scikit-image
+plotly
+pandas
+openai
+base64io
+python-dotenv
