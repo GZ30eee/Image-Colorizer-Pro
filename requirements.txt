@@ -1,0 +1,20 @@
+streamlit
+torch
+torchvision
+numpy
+Pillow
+opencv-python-headless
+scikit-image
+plotly
+pandas
+openai
+base64io
+python-dotenv
+
+streamlit-drawable-canvas
+onnx
+onnxruntime
+torchvision
+ultralytics  # for YOLO
+imageio[ffmpeg]
+moviepy
