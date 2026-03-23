@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorize — Simple AI Restoration</title>
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --fg: #000000;
+            --muted: #888888;
+            --border: #eeeeee; /* Light border for minimal look */
+            --border-bold: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Nav */
+        nav {
+            padding: 50px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--muted);
+            max-width: 500px;
+            margin: 0 auto 50px;
+            font-weight: 400;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 18px 40px;
+            background: var(--fg);
+            color: var(--bg);
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn:hover {
+            transform: scale(0.97);
+            opacity: 0.9;
+        }
+
+        /* Main Image */
+        .image-box {
+            margin: 80px 0;
+            border: 1px solid var(--border-bold);
+            padding: 2px;
+            background: white;
+            transition: 0.3s ease;
+        }
+
+        .image-box img {
+            width: 100%;
+            display: block;
+            filter: grayscale(100%);
+            transition: 0.8s ease;
+        }
+
+        .image-box:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* Grid Section */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--border-bold);
+            border-bottom: 1px solid var(--border-bold);
+            margin-top: 80px;
+        }
+
+        .info-card {
+            padding: 60px 20px;
+            border-right: 1px solid var(--border-bold);
+            text-align: center;
+        }
+
+        .info-card:last-child {
+            border-right: none;
+        }
+
+        .info-card i {
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .info-card p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* Steps */
+        .steps {
+            padding: 100px 0;
+        }
+
+        .steps h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .step-list {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .step-item {
+            flex: 1;
+        }
+
+        .step-num {
+            font-size: 3rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .step-txt {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            padding: 100px 0 50px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--muted);
+            letter-spacing: 1px;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            h1 { font-size: 3.5rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .info-card { border-right: none; border-bottom: 1px solid var(--border-bold); }
+            .step-list { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <i data-lucide="circle-dot"></i>
+                COLORIZE.AI
+            </div>
+            <div style="font-size: 0.8rem; font-weight: 600;">v1.0</div>
+        </nav>
+
+        <section class="hero">
+            <h1>Memories in color.</h1>
+            <p>A minimalist tool for intelligent image restoration and colorization.</p>
+            <a href="http://streamlit.imagecolorizer.app" class="btn">Apply Color</a>
+
+            <div class="image-box">
+                <img src="hero.png" alt="Colorization result on hover">
+            </div>
+        </section>
+
+        <section class="info-grid">
+            <div class="info-card">
+                <i data-lucide="zap" size="24"></i>
+                <h3>Speed</h3>
+                <p>Instant processing with optimized neural models.</p>
+            </div>
+            <div class="info-card">
+                <div style="height: 24px; margin-bottom: 20px; font-weight: 900; font-size: 1.2rem;">AI</div>
+                <h3>Model</h3>
+                <p>Custom deep learning architecture for realism.</p>
+            </div>
+            <div class="info-card">
+                <i data-lucide="shield" size="24"></i>
+                <h3>Privacy</h3>
+                <p>No storage. No tracking. Pure local inference.</p>
+            </div>
+        </section>
+
+        <section class="steps">
+            <h2>The Process</h2>
+            <div class="step-list">
+                <div class="step-item">
+                    <span class="step-num">01</span>
+                    <span class="step-txt">Upload high-res grayscale source.</span>
+                </div>
+                <div class="step-item">
+                    <span class="step-num">02</span>
+                    <span class="step-txt">Neural mapping of tonal values.</span>
+                </div>
+                <div class="step-item">
+                    <span class="step-num">03</span>
+                    <span class="step-txt">Download reconstructed asset.</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2026 COLORIZE. ALL RIGHTS RESERVED.
+        </footer>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
