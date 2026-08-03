@@ -126,6 +126,14 @@ class ImageProcessor:
         
         return color.lab2rgb(lab)
 
+    @staticmethod
+    def resize_to_match(img, target_shape):
+        """Resize image to target (H,W) using skimage."""
+        from skimage import transform
+        if img.shape[:2] == target_shape:
+            return img
+        return transform.resize(img, target_shape, mode='reflect', anti_aliasing=True)
+
 class PerformanceMonitor:
     """Tracks processing performance"""
     
