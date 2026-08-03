@@ -8,5 +8,6 @@ scikit-image
 plotly
 pandas
 openai
-base64io
 python-dotenv
+lpips
+pytest
